@@ -23,12 +23,17 @@ namespace UlovDesktopApplication.Pages
         {
             try
             {
+                if (_products.ID == 0) UlovDataBase.GetContext().Products.Add(_products);
 
                 UlovDataBase.GetContext().SaveChanges();
+
+                MessageBox.Show("Запись сохранена.");
+
+                NavigationService.Content = new ProductListPage();
             }
             catch
             {
-                MessageBox.Show("Ошибка при добавлении. Пожалуйста, проверьте данные на корректоность.");
+                MessageBox.Show("Ошибка при добавлении. Пожалуйста, проверьте данные на корректоность и повторите попытку.");
             }
         }
     }

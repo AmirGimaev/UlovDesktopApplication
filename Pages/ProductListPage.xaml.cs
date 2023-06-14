@@ -119,12 +119,21 @@ namespace UlovDesktopApplication.Pages
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Content = new AddAndEditProduct(new Products());
         }
 
         private void EditProductButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var _selectedProduct = ProductListView.SelectedItem as Products;
 
+                NavigationService.Content = new AddAndEditProduct(_selectedProduct);
+            }
+            catch
+            {
+                MessageBox.Show("Выберите запись.");
+            }
         }
 
         private void ShowPage(ref int number_page)
